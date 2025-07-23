@@ -1,9 +1,12 @@
 import React from 'react';
+import { Text } from '../../atoms';
+import { CategoryItem } from '../../molecules';
+import { useTheme } from '../../../context/ThemeContext';
 import styles from './Sidebar.module.css';
-import { useTheme } from '../../context/ThemeContext';
 
-function Sidebar({ activeCategory, onCategorySelect, noteCounts }) {
+const Sidebar = ({ activeCategory, onCategorySelect, noteCounts }) => {
   const { isDarkTheme } = useTheme();
+  
   const categories = [
     { id: 'all', name: 'Notes', count: noteCounts.all },
     { id: 'favorites', name: 'Favorites', count: noteCounts.favorites },
@@ -13,28 +16,26 @@ function Sidebar({ activeCategory, onCategorySelect, noteCounts }) {
   return (
     <div className={`${styles.sidebar} ${isDarkTheme ? styles.darkTheme : ''}`}>
       <div className={styles.header}>
-        <h2>NotePad</h2>
+        <Text variant="heading2">NotePad</Text>
       </div>
       
       <div className={styles.categories}>
-        <h3>Categories</h3>
+        <Text variant="heading3" color="muted" className={styles.categoriesTitle}>
+          Categories
+        </Text>
         <div className={styles.categoryList}>
           {categories.map(category => (
-            <div
+            <CategoryItem
               key={category.id}
-              className={`${styles.categoryItem} ${
-                activeCategory === category.id ? styles.active : ''
-              }`}
-              onClick={() => onCategorySelect(category.id)}
-            >
-              <span>{category.name}</span>
-              <span className={styles.count}>{category.count}</span>
-            </div>
+              category={category}
+              isActive={activeCategory === category.id}
+              onClick={onCategorySelect}
+            />
           ))}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;

@@ -1,0 +1,39 @@
+.searchBar {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  background-color: white;
+}
+
+.searchInput {
+  flex: 1;
+}
+
+.newNoteButton {
+  white-space: nowrap;
+}
+
+/* Dark theme support */
+.searchBar.darkTheme {
+  background-color: #2a2a2a !important;
+  border-bottom-color: #444 !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .searchBar {
+    padding: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .searchInput {
+    min-width: 0;
+  }
+  
+  .newNoteButton {
+    min-width: auto;
+    flex-shrink: 0;
+  }
+}

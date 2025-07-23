@@ -1,0 +1,52 @@
+.input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  background-color: white;
+  color: #333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.input.disabled {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Dark theme support */
+.darkTheme.input,
+.darkTheme .input {
+  background-color: #2a2a2a !important;
+  border-color: #444 !important;
+  color: #e0e0e0 !important;
+}
+
+.darkTheme.input:focus,
+.darkTheme .input:focus {
+  border-color: #0056b3 !important;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.4) !important;
+}
+
+.darkTheme.input::placeholder,
+.darkTheme .input::placeholder {
+  color: #666 !important;
+}
+
+.darkTheme.input.disabled,
+.darkTheme .input.disabled {
+  background-color: #1a1a1a !important;
+  color: #666 !important;
+}

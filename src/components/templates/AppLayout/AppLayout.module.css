@@ -1,0 +1,21 @@
+.appLayout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .appLayout {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .appLayout {
+    flex-direction: column;
+    height: 100vh;
+  }
+}

@@ -1,0 +1,270 @@
+.editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100vh;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.toolbar {
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  background-color: white;
+}
+
+.titleInput {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  padding: 8px 0;
+}
+
+.titleInput:focus {
+  outline: none;
+  border-bottom: 2px solid #007bff;
+}
+
+.editorContainer {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.lineNumbers {
+  background-color: #f8f9fa;
+  border-right: 1px solid #eee;
+  color: #666;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 20px 10px;
+  user-select: none;
+  width: 50px;
+  text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.lineNumber {
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.contentArea {
+  flex: 1;
+  border: none;
+  padding: 20px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: none;
+  background: transparent;
+  color: #333;
+  outline: none;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.previewContent {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+.previewContent h1,
+.previewContent h2,
+.previewContent h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.previewContent p {
+  margin-bottom: 16px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+  background-color: #f8f9fa;
+  min-height: 50px;
+  gap: 12px;
+}
+
+.noteActionsLeft,
+.footerActions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.footerCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  text-align: center;
+}
+
+.cursorInfo {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.active {
+  background-color: #007bff !important;
+  color: white !important;
+  border-color: #007bff !important;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3) !important;
+  transform: none !important;
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+/* Dark theme support */
+.editor.darkTheme {
+  background-color: #1a1a1a !important;
+}
+
+.darkTheme .toolbar {
+  background-color: #2a2a2a !important;
+  border-bottom-color: #444 !important;
+}
+
+.darkTheme .titleInput {
+  color: #e0e0e0 !important;
+}
+
+.darkTheme .lineNumbers {
+  background-color: #2a2a2a !important;
+  border-right-color: #444 !important;
+  color: #b0b0b0 !important;
+}
+
+.darkTheme .contentArea {
+  color: #e0e0e0 !important;
+}
+
+.darkTheme .footer {
+  background-color: #2a2a2a !important;
+  border-top-color: #444 !important;
+}
+
+.darkTheme .previewContent {
+  color: #e0e0e0 !important;
+}
+
+.darkTheme .active {
+  background-color: #66b3ff !important;
+  color: #1a1a1a !important;
+  border-color: #66b3ff !important;
+  box-shadow: 0 0 0 2px rgba(102, 179, 255, 0.3) !important;
+  transform: none !important;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .editor {
+    width: 100%;
+    height: auto;
+    flex: 1;
+  }
+  
+  .lineNumbers {
+    width: 40px;
+    font-size: 12px;
+    padding: 20px 8px;
+  }
+  
+  .lineNumber {
+    height: 19px;
+    font-size: 12px;
+  }
+  
+  .contentArea {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 768px) {
+  .editor {
+    height: auto;
+    flex: 1;
+    min-height: 300px;
+  }
+  
+  .toolbar {
+    padding: 12px;
+  }
+  
+  .titleInput {
+    font-size: 16px;
+  }
+  
+  .lineNumbers {
+    width: 35px;
+    font-size: 11px;
+    padding: 15px 6px;
+  }
+  
+  .lineNumber {
+    height: 17px;
+    font-size: 11px;
+  }
+  
+  .contentArea {
+    padding: 15px;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  
+  .footer {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .footerCenter {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+  }
+  
+  .noteActionsLeft,
+  .footerActions {
+    gap: 2px;
+    justify-content: center;
+  }
+  
+  .noteActionsLeft {
+    order: 1;
+  }
+  
+  .footerActions {
+    order: 2;
+  }
+}

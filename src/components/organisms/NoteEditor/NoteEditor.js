@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styles from './NoteEditor.module.css';
-import { useTheme } from '../../context/ThemeContext';
-import { useSettings } from '../../context/SettingsContext';
+import { Button, Input, Icon, Text } from '../../atoms';
+import { useTheme } from '../../../context/ThemeContext';
+import { useSettings } from '../../../context/SettingsContext';
 import Settings from '../Settings/Settings';
+import styles from './NoteEditor.module.css';
 
-function NoteEditor({ note, onNoteUpdate, onNoteDelete }) {
+const NoteEditor = ({ note, onNoteUpdate, onNoteDelete }) => {
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ line: 1, column: 1 });
@@ -95,10 +96,6 @@ function NoteEditor({ note, onNoteUpdate, onNoteDelete }) {
     }
   };
 
-  const handleThemeToggle = () => {
-    toggleTheme();
-  };
-
   const handleSettings = () => {
     setIsSettingsOpen(true);
   };
@@ -133,7 +130,7 @@ function NoteEditor({ note, onNoteUpdate, onNoteDelete }) {
       {note ? (
         <>
           <div className={styles.toolbar}>
-            <input
+            <Input
               type="text"
               value={note.title}
               onChange={handleTitleChange}
@@ -170,106 +167,112 @@ function NoteEditor({ note, onNoteUpdate, onNoteDelete }) {
 
           <div className={styles.footer}>
             <div className={styles.noteActionsLeft}>
-              <button
+              <Button
+                variant="icon"
                 onClick={handlePreviewToggle}
-                className={`${styles.footerButton} ${isPreviewMode ? styles.active : ''}`}
                 title={isPreviewMode ? "Edit" : "Preview"}
+                className={isPreviewMode ? styles.active : ''}
               >
-                {isPreviewMode ? '✏️' : '👁️'}
-              </button>
+                <Icon name={isPreviewMode ? 'edit' : 'eye'} />
+              </Button>
               
-              <button
+              <Button
+                variant="icon"
                 onClick={handleToggleFavorite}
-                className={`${styles.footerButton} ${note.isFavorite ? styles.active : ''}`}
                 title={note.isFavorite ? "Remove from favorites" : "Add to favorites"}
+                className={note.isFavorite ? styles.active : ''}
               >
-                {note.isFavorite ? '⭐' : '☆'}
-              </button>
+                <Icon name={note.isFavorite ? 'star' : 'star-outline'} />
+              </Button>
               
-              <button
+              <Button
+                variant="icon"
                 onClick={handleDelete}
-                className={styles.footerButton}
                 title="Delete note"
               >
-                🗑️
-              </button>
+                <Icon name="trash" />
+              </Button>
               
-              <button
+              <Button
+                variant="icon"
                 onClick={handleDownload}
-                className={styles.footerButton}
                 title="Download note"
               >
-                ⬇️
-              </button>
+                <Icon name="download" />
+              </Button>
               
-              <button
+              <Button
+                variant="icon"
                 onClick={handleCopy}
-                className={styles.footerButton}
                 title="Copy to clipboard"
               >
-                📋
-              </button>
+                <Icon name="copy" />
+              </Button>
             </div>
 
             <div className={styles.footerCenter}>
-              <span>Last updated: {new Date(note.updatedAt).toLocaleString()}</span>
+              <Text variant="caption" color="muted">
+                Last updated: {new Date(note.updatedAt).toLocaleString()}
+              </Text>
               {settings.displayLineNumbers && (
-                <span className={styles.cursorInfo}>
+                <Text variant="caption" color="muted" className={styles.cursorInfo}>
                   Ln {cursorPosition.line}, Col {cursorPosition.column}
-                </span>
+                </Text>
               )}
             </div>
             
             <div className={styles.footerActions}>
-              <button
-                onClick={handleThemeToggle}
-                className={`${styles.footerButton} ${isDarkTheme ? styles.active : ''}`}
+              <Button
+                variant="icon"
+                onClick={toggleTheme}
                 title="Toggle theme"
+                className={isDarkTheme ? styles.active : ''}
               >
-                {isDarkTheme ? '☀️' : '🌙'}
-              </button>
+                <Icon name={isDarkTheme ? 'sun' : 'moon'} />
+              </Button>
               
-              <button
+              <Button
+                variant="icon"
                 onClick={handleSettings}
-                className={styles.footerButton}
                 title="Settings"
               >
-                ⚙️
-              </button>
+                <Icon name="settings" />
+              </Button>
             </div>
           </div>
         </>
       ) : (
         <>
           <div className={styles.emptyState}>
-            <h3>Select a note to start editing</h3>
-            <p>Choose a note from the list or create a new one</p>
+            <Text variant="heading3">Select a note to start editing</Text>
+            <Text variant="body" color="muted">Choose a note from the list or create a new one</Text>
           </div>
           
           <div className={styles.footer}>
             <div className={styles.footerLeft}>
-              <span>No note selected</span>
+              <Text variant="caption" color="muted">No note selected</Text>
             </div>
             
             <div className={styles.footerCenter}>
             </div>
             
             <div className={styles.footerActions}>
-              <button
-                onClick={handleThemeToggle}
-                className={`${styles.footerButton} ${isDarkTheme ? styles.active : ''}`}
+              <Button
+                variant="icon"
+                onClick={toggleTheme}
                 title="Toggle theme"
+                className={isDarkTheme ? styles.active : ''}
               >
-                {isDarkTheme ? '☀️' : '🌙'}
-              </button>
+                <Icon name={isDarkTheme ? 'sun' : 'moon'} />
+              </Button>
               
-              <button
+              <Button
+                variant="icon"
                 onClick={handleSettings}
-                className={styles.footerButton}
                 title="Settings"
               >
-                ⚙️
-              </button>
+                <Icon name="settings" />
+              </Button>
             </div>
           </div>
         </>
@@ -278,6 +281,6 @@ function NoteEditor({ note, onNoteUpdate, onNoteDelete }) {
       <Settings isOpen={isSettingsOpen} onClose={handleCloseSettings} />
     </div>
   );
-}
+};
 
 export default NoteEditor;
